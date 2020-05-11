@@ -1,6 +1,6 @@
 using ImportMacros
-using ToolsPN
-const pn = ToolsPN
+@using ToolsPN as pn
+
 
 using Plots: plotly, plot, plot!
 
