@@ -1,13 +1,11 @@
-using ImportMacros
 using ToolsPN
-const pn = ToolsPN
 
 using Plots: plotly, plot, plot!
 
 function peakpos_test()
-    y, fs = pn.read_emg()
+    y, fs = ToolsPN.read_emg()
     sig = y[2001:10000, 1]
-    pk = pn.peakpos(sig, 0.075, 0.05)
+    pk = peakpos(sig, 0.075, 0.05)
     plotly()
     p = plot(sig)
     plot!(pk, sig[pk], line=:stem, marker=:o)

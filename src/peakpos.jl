@@ -8,8 +8,8 @@ end
 """
 peakpos - Detect peaks in a real-world signal
 
-Inputs: 
-    y (Array{Float64, 1}) is a 1-dimensional signal
+Inputs:
+    y (AbstractVector{<:Real}) is a 1-dimensional signal
     delta_left (Real) is the rise threshold, defaults to 8 times the standard deviation of y
     delta_right (Real) is the fall threshold, defaults to delta_left
 
@@ -18,18 +18,17 @@ Returns:
 
 Usage:
     peakpos(y)
-    f(::AbstractVector{<:Real})
 """
-function peakpos(y::Array{Float64,1})
+function peakpos(y::AbstractVector{<:Real})
     delta = 8*std(y)
     peakpos(y, delta, delta)
 end
 
-function peakpos(y::Array{Float64,1}, delta::Real)
+function peakpos(y::AbstractVector{<:Real}, delta::Real)
     peakpos(y, delta, delta)
 end
 
-function peakpos(y::Array{Float64,1}, delta_left::Real, delta_right::Real)
+function peakpos(y::AbstractVector{<:Real}, delta_left::Real, delta_right::Real)
     delta_right = isnan(delta_right) ? delta_left : delta_right
     ret = falses(size(y))
     
